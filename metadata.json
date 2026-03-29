@@ -1,0 +1,5 @@
+{
+  "name": "PDF Test Generator",
+  "description": "Upload a PDF containing Multiple Choice Questions to generate an interactive test with automated scoring (+1 for correct, -0.25 for incorrect).",
+  "requestFramePermissions": []
+}
