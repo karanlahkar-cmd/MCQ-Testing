@@ -1,14 +1,15 @@
 import React from 'react';
 import { Question } from '../types';
-import { RotateCcw, CheckCircle2, XCircle, MinusCircle } from 'lucide-react';
+import { RotateCcw, CheckCircle2, XCircle, MinusCircle, RefreshCw } from 'lucide-react';
 
 interface ResultsScreenProps {
   questions: Question[];
   userAnswers: (number | null)[];
   onRestart: () => void;
+  onReattempt: () => void;
 }
 
-export function ResultsScreen({ questions, userAnswers, onRestart }: ResultsScreenProps) {
+export function ResultsScreen({ questions, userAnswers, onRestart, onReattempt }: ResultsScreenProps) {
   let correctCount = 0;
   let incorrectCount = 0;
   let unattemptedCount = 0;
@@ -92,7 +93,14 @@ export function ResultsScreen({ questions, userAnswers, onRestart }: ResultsScre
         </div>
       </div>
 
-      <div className="flex justify-center mb-12">
+      <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <button
+          onClick={onReattempt}
+          className="flex items-center gap-2 px-8 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl transition-colors shadow-sm"
+        >
+          <RefreshCw className="w-5 h-5" />
+          Reattempt Test
+        </button>
         <button
           onClick={onRestart}
           className="flex items-center gap-2 px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-colors shadow-sm"

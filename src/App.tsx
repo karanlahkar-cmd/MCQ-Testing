@@ -51,6 +51,17 @@ export default function App() {
     });
   };
 
+  const handleReattempt = () => {
+    // Randomize the questions sequence
+    const shuffledQuestions = [...state.questions].sort(() => Math.random() - 0.5);
+    setState((s) => ({
+      ...s,
+      status: 'testing',
+      questions: shuffledQuestions,
+      userAnswers: new Array(shuffledQuestions.length).fill(null),
+    }));
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-blue-200">
       <header className="bg-white border-b border-slate-200 py-4 px-6 sticky top-0 z-10">
@@ -91,6 +102,7 @@ export default function App() {
             questions={state.questions} 
             userAnswers={state.userAnswers} 
             onRestart={handleRestart}
+            onReattempt={handleReattempt}
           />
         )}
       </main>
